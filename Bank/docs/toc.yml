@@ -1,0 +1,8 @@
+### YamlMime:TableOfContent
+items:
+- uid: Bank.Domain.Tests
+  name: Bank.Domain.Tests
+  items:
+  - uid: Bank.Domain.Tests.BankAccountTests
+    name: BankAccountTests
+memberLayout: SamePage

@@ -1,0 +1,14 @@
+{
+  "Bank.Domain.Tests": "Bank.Domain.Tests.yml",
+  "Bank.Domain.Tests.BankAccountTests": "Bank.Domain.Tests.BankAccountTests.yml",
+  "Bank.Domain.Tests.BankAccountTests.Constructor_SetsInitialBalanceCorrectly": "Bank.Domain.Tests.BankAccountTests.yml",
+  "Bank.Domain.Tests.BankAccountTests.Credit_WhenAmountIsLessThanZero_ShouldThrowArgumentOutOfRangeException": "Bank.Domain.Tests.BankAccountTests.yml",
+  "Bank.Domain.Tests.BankAccountTests.Credit_WhenAmountIsZero_ShouldNotChangeBalance": "Bank.Domain.Tests.BankAccountTests.yml",
+  "Bank.Domain.Tests.BankAccountTests.Credit_WithValidPositiveAmount_UpdatesBalanceCorrectly(System.Double,System.Double,System.Double)": "Bank.Domain.Tests.BankAccountTests.yml",
+  "Bank.Domain.Tests.BankAccountTests.CustomerName_ReturnsCorrectName_AfterConstruction": "Bank.Domain.Tests.BankAccountTests.yml",
+  "Bank.Domain.Tests.BankAccountTests.Debit_WhenAmountIsEqualToBalance_ShouldUpdateBalanceToZero": "Bank.Domain.Tests.BankAccountTests.yml",
+  "Bank.Domain.Tests.BankAccountTests.Debit_WhenAmountIsLessThanZero_ShouldThrowArgumentOutOfRange": "Bank.Domain.Tests.BankAccountTests.yml",
+  "Bank.Domain.Tests.BankAccountTests.Debit_WhenAmountIsMoreThanBalance_ShouldThrowArgumentOutOfRange": "Bank.Domain.Tests.BankAccountTests.yml",
+  "Bank.Domain.Tests.BankAccountTests.Debit_WhenAmountIsZero_ShouldNotChangeBalance": "Bank.Domain.Tests.BankAccountTests.yml",
+  "Bank.Domain.Tests.BankAccountTests.MultiDebit_WithValidAmount_UpdatesBalance(System.Double,System.Double,System.Double)": "Bank.Domain.Tests.BankAccountTests.yml"
+}

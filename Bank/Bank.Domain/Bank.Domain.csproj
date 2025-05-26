@@ -1,9 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+
+    <Version>3.0.0</Version>
+    <PackageId>Bank.Domain</PackageId>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <Authors>Daleskadf</Authors>
+    <RepositoryUrl>https://github.com/UPT-FAING-EPIS/lab-2025-i-si784-u2-03-cs-Daleskadf</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>

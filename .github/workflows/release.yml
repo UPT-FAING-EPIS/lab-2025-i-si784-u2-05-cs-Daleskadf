@@ -2,8 +2,6 @@ name: Bank - Release NuGet Package to GitHub Packages
 
 on:
   push:
-    tags:
-      - 'v*' 
 
 env:
   PROJECT_PATH: Bank/Bank.Domain/Bank.Domain.csproj 

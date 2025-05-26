@@ -1,4 +1,4 @@
-name: Publish Coverage Report
+name: Publish Coverage and Mutation Reports
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-report: 
     runs-on: ubuntu-latest
 
     steps:
@@ -22,8 +22,8 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore Bank.sln 
-      working-directory: Bank      
+      run: dotnet restore Bank.sln
+      working-directory: Bank
 
     - name: Build the project
       run: dotnet build Bank.sln --configuration Release
@@ -36,25 +36,55 @@ jobs:
     - name: Install ReportGenerator
       run: dotnet tool install -g dotnet-reportgenerator-globaltool
 
-    - name: Add .NET tools to PATH
+    - name: Add .NET tools to PATH 
       run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
-    - name: Generate coverage report
+    - name: Generate Cobertura coverage report
       run: |
-        reportgenerator "-reports:**/coverage.cobertura.xml" "-targetdir:coverage-report" -reporttypes:HTML
-      working-directory: Bank # El informe se genera en Bank/coverage-report
+        reportgenerator "-reports:**/TestResults/**/coverage.cobertura.xml" "-targetdir:coverage-report" -reporttypes:Html
+      working-directory: Bank 
 
-    - name: Publish coverage report to GitHub Pages
+    - name: Publish Cobertura coverage report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: Bank/coverage-report  
-        publish_branch: gh-pages    
-        destination_dir: cobertura   
-        keep_files: true                      
+        publish_dir: Bank/coverage-report
+        publish_branch: gh-pages
+        destination_dir: cobertura 
+        keep_files: true
         allow_empty_commit: false
-        force_orphan: false               
+        force_orphan: false
         enable_jekyll: false
-        disable_nojekyll: false               
+        disable_nojekyll: false
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
+
+    - name: Install Stryker
+      run: dotnet tool install -g dotnet-stryker
+
+    - name: Run Stryker mutation tests
+      run: |
+        dotnet stryker --output stryker-output \
+                       --reporter html \
+                       --reporter progress
+        # Asegúrate que Stryker está configurado para tu proyecto
+        # Podrías necesitar:
+        # dotnet stryker --project Bank.Domain.csproj --test-project Bank.Domain.Tests.csproj -o stryker-output --reporters html --reporters progress
+        # O usar un stryker-config.json
+      working-directory: Bank 
+
+    - name: Publish Stryker mutation report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: Bank/stryker-output/reports 
+        publish_branch: gh-pages
+        destination_dir: stryker 
+        keep_files: true 
+        allow_empty_commit: false 
+        force_orphan: false
+        enable_jekyll: false
+        disable_nojekyll: false
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: Deploy Stryker mutation report to Pages

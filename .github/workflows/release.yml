@@ -22,7 +22,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Run Unit Tests
-      run: dotnet test Bank/Bank.Tests/Bank.Tests.csproj --logger trx
+      run: dotnet test Bank/Bank.Domain.Tests/Bank.Domain.Tests.csproj --logger trx
 
     - name: Build project
       run: dotnet build Bank/Bank.Domain/Bank.Domain.csproj -c Release
